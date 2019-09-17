@@ -1,6 +1,6 @@
 class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = users(:one)
+    @user = users(:lauren)
   end
 
   test "should get index" do
