@@ -19,5 +19,4 @@ class AuthenticateUserTest < ActiveSupport::TestCase
     assert_equal false, result.success?
     assert_nil result.token
   end
-
 end

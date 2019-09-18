@@ -2,23 +2,23 @@ class BlacklistApiToken
   include Interactor
 
   def call
-    token = context.token ? context.token : parse_jwt_from_header
+    token = context.token || parse_jwt_from_header
     context.blacklisted_token = blacklist_token(context.token)
   end
 
   private
 
   def blacklist_token(token)
-    REDIS_CLIENT.set("blacklist:#{token}", "true")
-    REDIS_CLIENT.expire("blacklist:#{token}", 60*60*12)
+    REDIS_CLIENT.set("blacklist:#{token}", 'true')
+    REDIS_CLIENT.expire("blacklist:#{token}", 60 * 60 * 12)
     token
   end
 
   def parse_jwt_from_header
     if context.headers['Authorization'].present?
-      return jwt_token = context.headers['Authorization'].split(' ').last
+      jwt_token = context.headers['Authorization'].split(' ').last
     else
-      context.error = "Missing token"
+      context.error = 'Missing token'
       context.fail!
     end
   end

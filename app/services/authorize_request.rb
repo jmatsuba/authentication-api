@@ -14,7 +14,7 @@ class AuthorizeRequest
     if context.headers['Authorization'].present?
       @jwt_token = context.headers['Authorization'].split(' ').last
     else
-      context.error = "Missing token"
+      context.error = 'Missing token'
       context.fail!
     end
     nil
@@ -22,7 +22,7 @@ class AuthorizeRequest
 
   def check_token_blacklist
     if CheckApiBlacklist.call(token: @jwt_token).blacklisted
-      context.error = "Invalid token"
+      context.error = 'Invalid token'
       context.fail!
     end
   end
@@ -36,9 +36,8 @@ class AuthorizeRequest
     if @user
       context.user = @user
     else
-      context.error = "Invalid token"
+      context.error = 'Invalid token'
       context.fail!
     end
   end
-
 end

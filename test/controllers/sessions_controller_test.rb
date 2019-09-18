@@ -5,12 +5,12 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     @user = users(:lauren)
   end
 
-  test "correct login attempt should get a success" do
+  test 'correct login attempt should get a success' do
     post sessions_url, params: { session: { username: @user.username, password: '6x2thNeXYb!' } }
     assert_response :success
   end
 
-  test "incorrect login attempt should get a unauthorized" do
+  test 'incorrect login attempt should get a unauthorized' do
     post sessions_url, params: { session: { username: @user.username, password: 'helloworld' } }
     assert_response :unauthorized
   end
