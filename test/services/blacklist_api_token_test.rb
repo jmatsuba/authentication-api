@@ -10,5 +10,4 @@ class BlacklistApiTokenTest < ActiveSupport::TestCase
     assert_equal token, result.blacklisted_token
     assert_equal 'true', REDIS_CLIENT.get("blacklist:#{token}")
   end
-
 end
