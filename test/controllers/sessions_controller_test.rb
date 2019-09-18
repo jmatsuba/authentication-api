@@ -14,4 +14,8 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     post sessions_url, params: { session: { username: @user.username, password: 'helloworld' } }
     assert_response :unauthorized
   end
+
+  test "users can logout and get a api key blacklisted" do
+    skip("To be implemented")
+  end
 end

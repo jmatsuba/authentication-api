@@ -50,6 +50,12 @@ curl -H "Authorization: xxxxxxxx_auth_token_xxxxxxxx" http://localhost:3000/item
 Status 200
 ```
 
+Destroy Session (Blacklists API Key)
+```
+curl -H "Authorization: xxxxxxxx_auth_token_xxxxxxxx" -X DELETE http://localhost:3000/sessions
+=> {"message":"logout successful"}
+Status 200
+```
 
 ## Requirements  
 Using a combination of Ruby on Rails and Redis for data storage, we need an authentication API for internal services to create and authenticate users. This API should be RESTful and use JSON. It should be fast and secure, and be able to pass a basic security audit (e.g. password complexity). If there are areas of security that your solution hasn't had time to address they should be annotated for future development.

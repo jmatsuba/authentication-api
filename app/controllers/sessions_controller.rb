@@ -12,6 +12,13 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    result = BlacklistApiToken.call(headers: request.headers)
+
+    if result.success?
+      render json: { status: 'logout successful' }
+    else
+      render json: { error: result.message }, status: 500
+    end
   end
 
   private
