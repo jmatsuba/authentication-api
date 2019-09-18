@@ -16,6 +16,39 @@ rails test
 ```
 
 ## Routes
+```
+GET    /items
+POST   /users
+POST   /sessions
+DELETE /sessions
+```
+
+Create a User
+```
+curl -H "Content-Type: application/json" -X POST -d '{ "user": { "username": "dhh", "first_name": "David", "last_name": "Hansson", "password": "cpciU9scr9!" } }' http://localhost:3000/users
+Status 201
+```
+
+Authenticate User
+```
+curl -H "Content-Type: application/json" -X POST -d '{ "session": { "username": "dhh", "password": "cpciU9scr9!" } }' http://localhost:3000/sessions
+=> {"auth_token":"xxxxxxxx_auth_token_xxxxxxxx"}
+Status 200
+```
+
+Test Route (Unauthorized)
+```
+curl http://localhost:3000/items
+=> {"error":"Not Authorized"}
+Status 401
+```
+
+Test Route (Authorized)
+```
+curl -H "Authorization: xxxxxxxx_auth_token_xxxxxxxx" http://localhost:3000/items
+=> []
+Status 200
+```
 
 
 ## Requirements  
@@ -42,3 +75,10 @@ JSON Web Token - for API tokens
 Postgres - for persistant User storage  
 Minitest - For testing  
 Interacter - For Service Objects  
+
+## Assumptions
+We should not return anything but a 201 created for setting up a user. Do we ever want to reveal database IDs of users? This makes the API harder to work with, but could always be added back.
+
+## TODO
+Integration test
+Change root rails route to something not Welcome to Rails
