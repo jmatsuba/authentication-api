@@ -1,5 +1,4 @@
-if Rails.env.production?
-  REDIS_CLIENT = Redis.new(host: ENV['REDIS_URL'])
-else
-  REDIS_CLIENT = Redis.new(host: 'localhost')
-end
+REDIS_CLIENT = Redis.new(Rails.application.config_for(:redis))
+
+# Clear db when in test or development mode
+REDIS_CLIENT.flushdb if Rails.env.test?
