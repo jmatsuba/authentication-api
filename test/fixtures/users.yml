@@ -11,3 +11,9 @@ mike:
   last_name: Tung
   username: mtung
   password_digest: <%= BCrypt::Password.create('apNw9i2qkc!') %>
+
+andrew:
+  first_name: Andrew
+  last_name: Tung
+  username: atung
+  password_digest: <%= BCrypt::Password.create('4GUar2BYHk!') %>
