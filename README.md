@@ -86,5 +86,5 @@ Interacter - For Service Objects
 We should not return anything but a 201 created for setting up a user. Do we ever want to reveal database IDs of users? This makes the API harder to work with, but could always be added back.
 
 ## TODO
-Integration test
+Integration test to tie together creating a user, logging in, and testing the items endpoint  
 Change root rails route to something not Welcome to Rails
