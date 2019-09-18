@@ -1,6 +1,6 @@
 # Rails Authentication API example
 
-Prepared as for Lendesk  
+Prepared for Lendesk  
 
 ## Getting started
 
