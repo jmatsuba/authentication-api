@@ -15,7 +15,9 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :unauthorized
   end
 
-  test "users can logout and get a api key blacklisted" do
-    skip("To be implemented")
+  test 'users can logout and get a api key blacklisted' do
+    valid_token = JsonWebToken.encode(user_id: @user.id)
+    delete sessions_url, headers: { "Authorization": valid_token }
+    assert_response :success
   end
 end
