@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :authenticate_request, only: [:create]
+
   def create
     result = AuthenticateUser.call(username: params[:session][:username], password: params[:session][:password])
 
