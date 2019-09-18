@@ -3,6 +3,7 @@ class AuthorizeRequest
 
   def call
     parse_jwt_from_header
+    check_token_blacklist
     decode_auth_token
     lookup_user
   end
@@ -17,6 +18,13 @@ class AuthorizeRequest
       context.fail!
     end
     nil
+  end
+
+  def check_token_blacklist
+    if CheckApiBlacklist.call(token: @jwt_token).blacklisted
+      context.error = "Invalid token"
+      context.fail!
+    end
   end
 
   def decode_auth_token
