@@ -4,13 +4,13 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       post users_url, params: { user: { username: 'dhh', first_name: 'David', last_name: 'Hansson', password: 'cpciU9scr9!' } }, as: :json
     end
 
-    assert_response 201
+    assert_response :created
   end
 
   test 'should not create a duplicate user' do
     users(:lauren)
     post users_url, params: { user: { username: 'lipsum', first_name: 'Lauren', last_name: 'Ipsum', password: 'cpciU9scr9!' } }, as: :json
 
-    assert_response 422
+    assert_response :unprocessable_entity
   end
 end
